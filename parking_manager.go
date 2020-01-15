@@ -7,7 +7,7 @@ import(
 	dao "parking_lot/dao"
 )
 
-var db *dao.InMemoryDB
+var db dao.DataStore
 
 func createParkingLot(maxSlots int) (string, error){
 	db = dao.NewInMemoryDB(maxSlots)
@@ -16,6 +16,9 @@ func createParkingLot(maxSlots int) (string, error){
 }
 
 func park(regNo, colour string) (string, error) {
+	if db == nil {
+		return "", ErrNoParkingLotCreated
+	}
 	c := dao.NewCar(regNo, colour)
 	slot, err := db.Park(c)
 	var out string
@@ -28,6 +31,9 @@ func park(regNo, colour string) (string, error) {
 }
 
 func leave(no int) (string, error) {
+	if db == nil {
+		return "", ErrNoParkingLotCreated
+	}
 	s := dao.NewSlot(no)
 	err := db.Leave(s)
 	var out string
@@ -41,6 +47,9 @@ func leave(no int) (string, error) {
 
 
 func status() (string, error) {
+	if db == nil {
+		return "", ErrNoParkingLotCreated
+	}
 	slotsList, err := db.GetAll()
 	var out string
 	if err != nil {
@@ -57,6 +66,9 @@ func status() (string, error) {
 }
 
 func getAllRegNoBycolour(colour string) (string, error) {
+	if db == nil {
+		return "", ErrNoParkingLotCreated
+	}
 	slotsList, err := db.GetAllSlotsByColour(colour)
 	var out string
 	if err != nil {
@@ -79,6 +91,9 @@ func getAllRegNoBycolour(colour string) (string, error) {
 }
 
 func getAllSlotNoBycolour(colour string) (string, error) {
+	if db == nil {
+		return "", ErrNoParkingLotCreated
+	}
 	slotsList, err := db.GetAllSlotsByColour(colour)
 	var out string
 	if err != nil {
@@ -100,6 +115,9 @@ func getAllSlotNoBycolour(colour string) (string, error) {
 }
 
 func getSlotNoByRegNo(regNo string) (string, error) {
+	if db == nil {
+		return "", ErrNoParkingLotCreated
+	}
 	slot,err := db.GetSlotByRegNo(regNo)
 	var out string
 	if err != nil {

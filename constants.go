@@ -1,5 +1,9 @@
 package main
 
+import(
+	"errors"
+)
+
 var (
 	// CmdPark -
 	CmdPark = "park"
@@ -15,4 +19,7 @@ var (
 	CmdSlotnoByCarColour = "slot_numbers_for_cars_with_colour"
 	// CmdSlotnoByRegNumber - 
 	CmdSlotnoByRegNumber = "slot_number_for_registration_number"
+
+	// ErrNoParkingLotCreated - 
+	ErrNoParkingLotCreated= errors.New("No parking lot avaible. Create parking lot first")
 )
