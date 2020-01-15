@@ -7,14 +7,16 @@
 #
 # After this is run, bin/parking_lot
 # should Just Work.
-echo "starting build..."
+
+#echo "starting build..."
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $DIR/..
+make clean
 make build
-echo "build finished..."
+#echo "build finished..."
 
-echo "starting tests.."
+#echo "starting tests.."
 $DIR/run_functional_tests
 
-echo "test finished.."
+#echo "test finished.."

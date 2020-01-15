@@ -55,10 +55,10 @@ func status() (string, error) {
 	if err != nil {
 		out = err.Error()
 	}else{
-		out = fmt.Sprintf("Slot No.\tRegistration No\tColour")
+		out = fmt.Sprintf("Slot No.    Registration No    Colour")
 		for _, slot := range slotsList {
 			if slot!= nil && slot.Car != nil {
-				out += fmt.Sprintf("\n%d\t\t%s\t%s", slot.No, slot.Car.RegNo, slot.Car.Colour)
+				out += fmt.Sprintf("\n%d           %s      %s", slot.No, slot.Car.RegNo, slot.Car.Colour)
 			}
 		}
 	}

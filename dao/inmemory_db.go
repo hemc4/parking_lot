@@ -37,7 +37,7 @@ func (m *InMemoryDB) Park(c *Car) (*Slot, error){
 func (m *InMemoryDB) Leave(s *Slot) (error){
 	found := false
 	for _,slot := range m.slots {
-		if slot.No == s.No {
+		if slot != nil && slot.No == s.No {
 			found = true
 			slot.No = 0
 			slot.Car = nil

@@ -19,10 +19,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 # 
 # Important: Above commands is just examples, please modify to suit your requirement as necessary
 
-if [ -e parking_lot ]
-then
-    $DIR/../parking_lot ${1}
-else
-    $DIR/setup
-    $DIR/../parking_lot ${1}
-fi
+$DIR/../parking_lot ${1}

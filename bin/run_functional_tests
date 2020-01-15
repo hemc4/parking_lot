@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-cd $DIR/..
-
-make test
+project_bin_dir = File.join(File.dirname(File.expand_path(__FILE__)))
+functional_spec_dir = File.join(project_bin_dir, '..', 'functional_spec')
+cmd = "cd #{functional_spec_dir}; bundle install; bundle exec rake spec:functional"
+puts cmd
+system cmd
