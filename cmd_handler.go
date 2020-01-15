@@ -18,14 +18,18 @@ func executeInlineCommands() error{
 		if inputText == "exit" {
 			break
 		}
-		command := splitCommand(inputText)
-		//fmt.Println(command)
-		output, err := runCommand(command)
-		if err != nil {
-			fmt.Println(err.Error())
-		}else{
-			fmt.Println(output)
-		}
+		runCmdInput(inputText)
 	}
 	return nil
+}
+
+func runCmdInput(inputText string){
+	command := splitCommand(inputText)
+	//fmt.Println(command)
+	output, err := runCommand(command)
+	if err != nil {
+		fmt.Print(err.Error())
+	}else{
+		fmt.Print(output)
+	}
 }
