@@ -3,13 +3,11 @@ package dao
 
 // DataStore - 
 type DataStore interface {
+	//modifiers
 	Park(*Car) (*Slot, error)
 	Leave(*Slot) (error)
-	
-	// Access
+	//readers
 	GetAll() ([]*Slot, error)
 	GetAllSlotsByColour(string) ([]*Slot, error)
-
-	GetAllCarsByColour(string) ([]*Car, error)
-	GetCarByRegNo(string) (*Car, error)
+	GetSlotByRegNo(string) (*Slot, error)
 }

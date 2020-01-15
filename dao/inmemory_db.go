@@ -52,22 +52,25 @@ func (m *InMemoryDB) GetAll() ([]*Slot, error){
 	return m.slots, nil
 }
 
-// GetAllCarsByColour - 
-func (m *InMemoryDB) GetAllCarsByColour(string) ([]*Car, error){
-	return nil,nil
-}
-
 // GetAllSlotsByColour - 
-func (m *InMemoryDB) GetAllSlotsByColour(string) ([]*Slot, error){
-	return m.slots, nil
+func (m *InMemoryDB) GetAllSlotsByColour(colour string) ([]*Slot, error){
+	s := make([]*Slot, m.maxSlots)
+	for _,slot := range m.slots {
+		if slot.Car != nil {
+			if slot.Car.Colour == colour {
+				s =append(s, slot)
+			}
+		}
+	}
+	return s, nil
 }
 
-// GetCarByRegNo - 
-func (m *InMemoryDB) GetCarByRegNo(regNo string) (*Car, error){
+// GetSlotByRegNo - 
+func (m *InMemoryDB) GetSlotByRegNo(regNo string) (*Slot, error){
 	for _,slot := range m.slots {
 		if slot.Car != nil {
 			if slot.Car.RegNo == regNo {
-				return slot.Car, nil
+				return slot, nil
 			}
 		}
 	}

@@ -11,6 +11,6 @@ var (
 	ErrNoCarsParked = errors.New("No cars parked")
 	// ErrCarNotFound - 
 	ErrCarNotFound = errors.New("Not found")
-	// ErrCarWithColorNotFound - 
-	ErrCarWithColorNotFound = errors.New("Car with specified color not found")
+	// ErrCarWithColourNotFound - 
+	ErrCarWithColourNotFound = errors.New("Car with specified colour not found")
 )
