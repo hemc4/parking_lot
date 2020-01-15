@@ -3,6 +3,8 @@ package dao
 import (
 	//"fmt"
 )
+//TODO  O(n) operations
+
 //InMemoryDB - memory staorge
 type InMemoryDB struct{
 	maxSlots int

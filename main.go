@@ -6,7 +6,7 @@ import (
 
 func main(){
 	flag.Parse()
-	// TODO create input handler inteface, like cmd, file, api, etc 
+	// TODO Convert it to multi(cmd, file, api ...) support input/output handler inteface 
 	if len(flag.Args()) > 0 {
 		executeFile(flag.Args()[0])
 	}else{
