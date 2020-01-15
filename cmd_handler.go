@@ -28,8 +28,8 @@ func runCmdInput(inputText string){
 	//fmt.Println(command)
 	output, err := runCommand(command)
 	if err != nil {
-		fmt.Print(err.Error())
+		fmt.Println(err.Error())
 	}else{
-		fmt.Print(output)
+		fmt.Println(output)
 	}
 }
