@@ -1,5 +1,8 @@
 package dao
 
+import (
+	//"fmt"
+)
 //InMemoryDB - memory staorge
 type InMemoryDB struct{
 	maxSlots int
@@ -23,6 +26,8 @@ func (m *InMemoryDB) Park(c *Car) (*Slot, error){
 	}
 	
 	slot.Car = c
+	i :=  slot.No - 1
+	m.slots[i] = slot
 	return slot, err
 }
 
@@ -71,12 +76,15 @@ func (m *InMemoryDB) GetCarByRegNo(regNo string) (*Car, error){
 
 // GetNextEmptySlot -   
 func (m *InMemoryDB) GetNextEmptySlot()  (*Slot, error) {
+	//fmt.Println(m)
 	no := 0;
 	for _,slot := range m.slots {
-		if slot.No == 0 {
-			break
-		}else{
-			no++;
+		if slot != nil {
+			if slot.No == 0 {
+				break
+			}else{
+				no++;
+			}
 		}
 	}
 	if no +1 > m.maxSlots {

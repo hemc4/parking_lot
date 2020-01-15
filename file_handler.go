@@ -17,6 +17,7 @@ func executeFile(path string) error{
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		command := splitCommand(scanner.Text())
+		fmt.Println(command)
 		output, err := runCommand(command)
 		if err != nil {
 			fmt.Println(err.Error())
