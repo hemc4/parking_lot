@@ -1,14 +1,14 @@
 package dao
 
-import(
+import (
 	"errors"
 )
 
 var (
-	// ErrMaxSlotReached - 
+	// ErrMaxSlotReached -
 	ErrMaxSlotReached = errors.New("Sorry, parking lot is full")
-	// ErrCarNotFound - 
+	// ErrCarNotFound -
 	ErrCarNotFound = errors.New("Not found")
-	// ErrInvalidMaxSlots - 
+	// ErrInvalidMaxSlots -
 	ErrInvalidMaxSlots = errors.New("Max slots should be greter than 0")
 )

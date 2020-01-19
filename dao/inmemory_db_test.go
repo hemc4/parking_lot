@@ -1,16 +1,15 @@
 package dao
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
-
 
 func TestNewInMemoryDB(t *testing.T) {
 	var cases = []struct {
-		input int
+		input  int
 		output *InMemoryDB
-		err error
+		err    error
 	}{
 		{0, nil, ErrInvalidMaxSlots},
 		{6, new(InMemoryDB), nil},
@@ -28,8 +27,8 @@ func TestNewInMemoryDB(t *testing.T) {
 	}
 }
 
-func TestGetNextEmptySlot(t *testing.T){
-	db, _:= NewInMemoryDB(4)
+func TestGetNextEmptySlot(t *testing.T) {
+	db, _ := NewInMemoryDB(4)
 	slot, _ := db.GetNextEmptySlot()
 	if assert.NotNil(t, slot) {
 		assert.Equal(t, 1, slot.No, "they should be equal")

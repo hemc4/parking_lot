@@ -1,9 +1,9 @@
 package dao
 
-// Slot - 
+// Slot -
 type Slot struct {
-	No  	int
-	Car		*Car
+	No  int
+	Car *Car
 }
 
 // NewSlot - constuctor
