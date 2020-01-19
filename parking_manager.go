@@ -29,7 +29,7 @@ func park(regNo, colour string) (string, error) {
 	if err != nil {
 		out = err.Error()
 	} else {
-		out = fmt.Sprintf("Allocated slot number: %d", slot.No)
+		out = fmt.Sprintf("Allocated slot number: %d", slot.GetNo())
 	}
 	return out, err
 }
@@ -60,8 +60,8 @@ func status() (string, error) {
 	} else {
 		out = fmt.Sprintf("Slot No.    Registration No    Colour")
 		for _, slot := range slotsList {
-			if slot != nil && slot.Vehicle != nil {
-				out += fmt.Sprintf("\n%d           %s      %s", slot.No, slot.Vehicle.GetRegNo(), slot.Vehicle.GetColour())
+			if slot != nil && slot.GetVehicle() != nil {
+				out += fmt.Sprintf("\n%d           %s      %s", slot.GetNo(), slot.GetVehicle().GetRegNo(), slot.GetVehicle().GetColour())
 			}
 		}
 	}
@@ -79,11 +79,11 @@ func getAllRegNoBycolour(colour string) (string, error) {
 	} else {
 		first := true
 		for _, slot := range slotsList {
-			if slot != nil && slot.Vehicle != nil {
+			if slot != nil && slot.GetVehicle() != nil {
 				if first {
-					out += fmt.Sprintf("%s", slot.Vehicle.GetRegNo())
+					out += fmt.Sprintf("%s", slot.GetVehicle().GetRegNo())
 				} else {
-					out += fmt.Sprintf(", %s", slot.Vehicle.GetRegNo())
+					out += fmt.Sprintf(", %s", slot.GetVehicle().GetRegNo())
 				}
 				first = false
 			}
@@ -106,9 +106,9 @@ func getAllSlotNoBycolour(colour string) (string, error) {
 		for _, slot := range slotsList {
 			if slot != nil {
 				if first {
-					out += fmt.Sprintf("%d", slot.No)
+					out += fmt.Sprintf("%d", slot.GetNo())
 				} else {
-					out += fmt.Sprintf(", %d", slot.No)
+					out += fmt.Sprintf(", %d", slot.GetNo())
 				}
 				first = false
 			}
@@ -126,7 +126,7 @@ func getSlotNoByRegNo(regNo string) (string, error) {
 	if err != nil {
 		out = err.Error()
 	} else {
-		out = fmt.Sprintf("%d", slot.No)
+		out = fmt.Sprintf("%d", slot.GetNo())
 	}
 	return out, err
 

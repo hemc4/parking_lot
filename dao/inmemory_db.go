@@ -31,8 +31,8 @@ func (m *InMemoryDB) Park(v Vehicle) (*Slot, error) {
 		return nil, err
 	}
 
-	slot.Vehicle = v
-	i := slot.No - 1
+	slot.SetVehicle(v)
+	i := slot.GetNo() - 1
 	m.slots[i] = slot
 	return slot, err
 }
@@ -41,10 +41,10 @@ func (m *InMemoryDB) Park(v Vehicle) (*Slot, error) {
 func (m *InMemoryDB) Leave(s *Slot) error {
 	found := false
 	for _, slot := range m.slots {
-		if slot != nil && slot.No == s.No {
+		if slot != nil && slot.GetNo() == s.GetNo() {
 			found = true
-			slot.No = 0
-			slot.Vehicle = nil
+			slot.SetNo(0)
+			slot.SetVehicle(nil)
 		}
 	}
 	if !found {
@@ -62,8 +62,8 @@ func (m *InMemoryDB) GetAll() ([]*Slot, error) {
 func (m *InMemoryDB) GetAllSlotsByColour(colour string) ([]*Slot, error) {
 	s := make([]*Slot, m.maxSlots)
 	for _, slot := range m.slots {
-		if slot.Vehicle != nil {
-			if slot.Vehicle.GetColour() == colour {
+		if slot.GetVehicle() != nil {
+			if slot.GetVehicle().GetColour() == colour {
 				s = append(s, slot)
 			}
 		}
@@ -74,8 +74,8 @@ func (m *InMemoryDB) GetAllSlotsByColour(colour string) ([]*Slot, error) {
 // GetSlotByRegNo -
 func (m *InMemoryDB) GetSlotByRegNo(regNo string) (*Slot, error) {
 	for _, slot := range m.slots {
-		if slot.Vehicle != nil {
-			if slot.Vehicle.GetRegNo() == regNo {
+		if slot.GetVehicle() != nil {
+			if slot.GetVehicle().GetRegNo() == regNo {
 				return slot, nil
 			}
 		}
@@ -89,7 +89,7 @@ func (m *InMemoryDB) GetNextEmptySlot() (*Slot, error) {
 	no := 0
 	for _, slot := range m.slots {
 		if slot != nil {
-			if slot.No == 0 {
+			if slot.GetNo() == 0 {
 				break
 			} else {
 				no++
