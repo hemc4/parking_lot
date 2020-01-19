@@ -1,8 +1,8 @@
 package main
 
 import (
-	"testing"
 	"errors"
+	"testing"
 )
 
 func TestExecuteFile(t *testing.T) {
@@ -10,8 +10,8 @@ func TestExecuteFile(t *testing.T) {
 		input  string
 		output error
 	}{
-		{"functional_spec/fixtures/file_input.txt",nil},
-		{"dummy.txt",errors.New("Path Error")},
+		{"functional_spec/fixtures/file_input.txt", nil},
+		{"dummy.txt", errors.New("Path Error")},
 	}
 	for _, testCase := range cases {
 		err := executeFile(testCase.input)

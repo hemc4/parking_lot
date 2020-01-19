@@ -1,17 +1,16 @@
 package main
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
 	dao "parking_lot/dao"
+	"testing"
 )
-
 
 func TestCreateParkingLot(t *testing.T) {
 	var cases = []struct {
-		input int
+		input  int
 		output string
-		err error
+		err    error
 	}{
 		{0, "", dao.ErrInvalidMaxSlots},
 		{6, "Created a parking lot with 6 slots", nil},
@@ -27,10 +26,9 @@ func TestCreateParkingLot(t *testing.T) {
 	}
 }
 
-
 func TestSplitCommand(t *testing.T) {
 	var cases = []struct {
-		input string
+		input  string
 		output []string
 	}{
 		{"create_parking_lot 6", []string{"create_parking_lot", "6"}},
@@ -39,16 +37,15 @@ func TestSplitCommand(t *testing.T) {
 	for _, testCase := range cases {
 		recievedOutput := splitCommand(testCase.input)
 		assert.Equal(t, testCase.output, recievedOutput, "they should be equal")
-		
+
 	}
 }
 
-
 func TestRunCommand(t *testing.T) {
 	var cases = []struct {
-		input []string
+		input  []string
 		output string
-		err error
+		err    error
 	}{
 		{[]string{"create_parking_lot", "6"}, "Created a parking lot with 6 slots", nil},
 		{[]string{"create_multi_story_parking_lot", "3", "6"}, "", ErrCommandNotSupported},

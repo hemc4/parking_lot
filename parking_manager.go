@@ -10,7 +10,7 @@ import (
 var db dao.DataStore
 
 func createParkingLot(maxSlots int) (string, error) {
-	var  err error
+	var err error
 	db, err = dao.NewInMemoryDB(maxSlots)
 	var out string
 	if err == nil {

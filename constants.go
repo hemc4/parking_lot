@@ -7,7 +7,7 @@ import (
 var (
 	// ErrNoParkingLotCreated -
 	ErrNoParkingLotCreated = errors.New("No parking lot avaible. Create parking lot first")
-	// ErrCommandNotSupported - 
+	// ErrCommandNotSupported -
 	ErrCommandNotSupported = errors.New("There is no such command available")
 
 	// CmdPark -
@@ -24,5 +24,4 @@ var (
 	CmdSlotnoByCarColour = "slot_numbers_for_cars_with_colour"
 	// CmdSlotnoByRegNumber -
 	CmdSlotnoByRegNumber = "slot_number_for_registration_number"
-
 )

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
+	"testing"
 )
 
 func TestRunCmdInput(t *testing.T) {
