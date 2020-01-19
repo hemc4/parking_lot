@@ -12,12 +12,15 @@ type InMemoryDB struct{
 }
 
 // NewInMemoryDB - constructor
-func NewInMemoryDB(maxSlots int) *InMemoryDB{
-	m := new(InMemoryDB);
-	m.maxSlots= maxSlots;
-	s := make([]*Slot, maxSlots)
-	m.slots = s
-	return m
+func NewInMemoryDB(maxSlots int) (*InMemoryDB, error){
+	if maxSlots > 0 {
+		m := new(InMemoryDB);
+		m.maxSlots= maxSlots;
+		s := make([]*Slot, maxSlots)
+		m.slots = s
+		return m, nil
+	}
+	return nil, ErrInvalidMaxSlots
 }
 
 // Park - park a car

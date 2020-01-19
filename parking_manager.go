@@ -10,9 +10,13 @@ import (
 var db dao.DataStore
 
 func createParkingLot(maxSlots int) (string, error) {
-	db = dao.NewInMemoryDB(maxSlots)
-	out := fmt.Sprintf("Created a parking lot with %d slots", maxSlots)
-	return out, nil
+	var  err error
+	db, err = dao.NewInMemoryDB(maxSlots)
+	var out string
+	if err == nil {
+		out = fmt.Sprintf("Created a parking lot with %d slots", maxSlots)
+	}
+	return out, err
 }
 
 func park(regNo, colour string) (string, error) {
@@ -154,7 +158,7 @@ func runCommand(command []string) (string, error) {
 		return getSlotNoByRegNo(command[1])
 	default:
 	}
-	return "", nil
+	return "", ErrCommandNotSupported
 }
 
 // TODO create a struct for command with args and parse all strings to that command,

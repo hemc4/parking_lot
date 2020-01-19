@@ -3,17 +3,15 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 )
 
 func executeFile(path string) error {
 	file, err := os.Open(path)
-	if err != nil {
-		log.Fatal(err)
-	}
 	defer file.Close()
-
+	if err != nil {
+		return err
+	}
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		command := splitCommand(scanner.Text())

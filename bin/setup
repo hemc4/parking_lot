@@ -12,8 +12,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $DIR/..
-make clean
-make build
+make all
 #echo "build finished..."
 
 #echo "starting tests.."
