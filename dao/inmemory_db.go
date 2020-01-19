@@ -3,7 +3,7 @@ package dao
 import (
 	//"fmt"
 )
-//TODO  O(n) operations
+//TODO  optimize O(n) operations
 
 //InMemoryDB - memory staorge
 type InMemoryDB struct{
