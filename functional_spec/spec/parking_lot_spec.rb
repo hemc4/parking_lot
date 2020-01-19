@@ -36,5 +36,25 @@ EOTXT
 )
   end
   
-  pending "add more specs as needed"
+  it "can show slot no by reg no" do
+    run_command(pty, "park KA-01-HH-7777 Red\n")
+    run_command(pty, "slot_number_for_registration_number KA-01-HH-7777\n")
+    expect(fetch_stdout(pty)).to end_with("1\n")
+  end
+
+  it "can show reg no by colour" do
+    run_command(pty, "park KA-01-HH-1234 White\n")
+    run_command(pty, "park KA-01-HH-3141 Black\n")
+    run_command(pty, "park KA-01-HH-9999 White\n")
+    run_command(pty, "registration_numbers_for_cars_with_colour White\n")
+    expect(fetch_stdout(pty)).to end_with("KA-01-HH-1234, KA-01-HH-9999\n")
+  end
+
+  it "can show slot no by colour" do
+    run_command(pty, "park KA-01-HH-1234 White\n")
+    run_command(pty, "park KA-01-HH-3141 Black\n")
+    run_command(pty, "park KA-01-HH-9999 White\n")
+    run_command(pty, "slot_numbers_for_cars_with_colour White\n")
+    expect(fetch_stdout(pty)).to end_with("1, 3\n")
+  end
 end
