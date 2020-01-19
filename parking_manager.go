@@ -60,8 +60,8 @@ func status() (string, error) {
 	} else {
 		out = fmt.Sprintf("Slot No.    Registration No    Colour")
 		for _, slot := range slotsList {
-			if slot != nil && slot.Car != nil {
-				out += fmt.Sprintf("\n%d           %s      %s", slot.No, slot.Car.RegNo, slot.Car.Colour)
+			if slot != nil && slot.Vehicle != nil {
+				out += fmt.Sprintf("\n%d           %s      %s", slot.No, slot.Vehicle.GetRegNo(), slot.Vehicle.GetColour())
 			}
 		}
 	}
@@ -79,11 +79,11 @@ func getAllRegNoBycolour(colour string) (string, error) {
 	} else {
 		first := true
 		for _, slot := range slotsList {
-			if slot != nil && slot.Car != nil {
+			if slot != nil && slot.Vehicle != nil {
 				if first {
-					out += fmt.Sprintf("%s", slot.Car.RegNo)
+					out += fmt.Sprintf("%s", slot.Vehicle.GetRegNo())
 				} else {
-					out += fmt.Sprintf(", %s", slot.Car.RegNo)
+					out += fmt.Sprintf(", %s", slot.Vehicle.GetRegNo())
 				}
 				first = false
 			}

@@ -3,7 +3,7 @@ package dao
 // Slot -
 type Slot struct {
 	No  int
-	Car *Car
+	Vehicle Vehicle
 }
 
 // NewSlot - constuctor
