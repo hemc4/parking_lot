@@ -9,7 +9,7 @@ import (
 //InMemoryDB - memory staorge
 type InMemoryDB struct {
 	maxSlots int
-	slots    []*Slot
+	slots    []Slot
 }
 
 // NewInMemoryDB - constructor
@@ -17,7 +17,7 @@ func NewInMemoryDB(maxSlots int) (*InMemoryDB, error) {
 	if maxSlots > 0 {
 		m := new(InMemoryDB)
 		m.maxSlots = maxSlots
-		s := make([]*Slot, maxSlots)
+		s := make([]Slot, maxSlots)
 		m.slots = s
 		return m, nil
 	}
@@ -25,7 +25,7 @@ func NewInMemoryDB(maxSlots int) (*InMemoryDB, error) {
 }
 
 // Park - park a car
-func (m *InMemoryDB) Park(v Vehicle) (*Slot, error) {
+func (m *InMemoryDB) Park(v Vehicle) (Slot, error) {
 	slot, err := m.GetNextEmptySlot()
 	if err != nil {
 		return nil, err
@@ -38,7 +38,7 @@ func (m *InMemoryDB) Park(v Vehicle) (*Slot, error) {
 }
 
 // Leave -
-func (m *InMemoryDB) Leave(s *Slot) error {
+func (m *InMemoryDB) Leave(s Slot) error {
 	found := false
 	for _, slot := range m.slots {
 		if slot != nil && slot.GetNo() == s.GetNo() {
@@ -54,13 +54,13 @@ func (m *InMemoryDB) Leave(s *Slot) error {
 }
 
 // GetAll -
-func (m *InMemoryDB) GetAll() ([]*Slot, error) {
+func (m *InMemoryDB) GetAll() ([]Slot, error) {
 	return m.slots, nil
 }
 
 // GetAllSlotsByColour -
-func (m *InMemoryDB) GetAllSlotsByColour(colour string) ([]*Slot, error) {
-	s := make([]*Slot, m.maxSlots)
+func (m *InMemoryDB) GetAllSlotsByColour(colour string) ([]Slot, error) {
+	s := make([]Slot, m.maxSlots)
 	for _, slot := range m.slots {
 		if slot.GetVehicle() != nil {
 			if slot.GetVehicle().GetColour() == colour {
@@ -72,7 +72,7 @@ func (m *InMemoryDB) GetAllSlotsByColour(colour string) ([]*Slot, error) {
 }
 
 // GetSlotByRegNo -
-func (m *InMemoryDB) GetSlotByRegNo(regNo string) (*Slot, error) {
+func (m *InMemoryDB) GetSlotByRegNo(regNo string) (Slot, error) {
 	for _, slot := range m.slots {
 		if slot.GetVehicle() != nil {
 			if slot.GetVehicle().GetRegNo() == regNo {
@@ -84,7 +84,7 @@ func (m *InMemoryDB) GetSlotByRegNo(regNo string) (*Slot, error) {
 }
 
 // GetNextEmptySlot -
-func (m *InMemoryDB) GetNextEmptySlot() (*Slot, error) {
+func (m *InMemoryDB) GetNextEmptySlot() (Slot, error) {
 	//fmt.Println(m)
 	no := 0
 	for _, slot := range m.slots {
