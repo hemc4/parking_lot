@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"log"
 	"os"
 )
 
-func executeFile(path string) error{
+func executeFile(path string) error {
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -21,11 +21,9 @@ func executeFile(path string) error{
 		output, err := runCommand(command)
 		if err != nil {
 			fmt.Println(err.Error())
-		}else{
+		} else {
 			fmt.Println(output)
 		}
 	}
 	return nil
 }
-
-
