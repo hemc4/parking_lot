@@ -14,12 +14,12 @@ func NewCar(regNo, colour string) *Car {
 	}
 }
 
-// GetRegNo - 
+// GetRegNo -
 func (c *Car) GetRegNo() string {
 	return c.regNo
 }
 
-// GetColour - 
-func (c *Car)  GetColour() string {
+// GetColour -
+func (c *Car) GetColour() string {
 	return c.colour
 }

@@ -1,7 +1,7 @@
-package dao 
+package dao
 
-// Vehicle - 
-type Vehicle interface{
+// Vehicle -
+type Vehicle interface {
 	GetRegNo() string
 	GetColour() string
 }

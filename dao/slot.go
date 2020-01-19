@@ -2,7 +2,7 @@ package dao
 
 // Slot -
 type Slot struct {
-	No  int
+	No      int
 	Vehicle Vehicle
 }
 
